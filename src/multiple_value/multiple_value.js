@@ -134,6 +134,7 @@ class MultipleValue extends React.PureComponent {
       >
         {data
           .map((dataPoint, index) => {
+            console.log(dataPoint)
             const compDataPoint = dataPoint.comparison
             let progressPerc
             let percChange
