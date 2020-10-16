@@ -134,7 +134,7 @@ class MultipleValue extends React.PureComponent {
       >
       <>
       <DataPointGroup
-                    comparisonPlacement={compDataPoint && "below"}
+                    comparisonPlacement={data[0] && "below"}
                     key={`group_${data[0].name}`}
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                 >
@@ -154,7 +154,7 @@ class MultipleValue extends React.PureComponent {
                     </DataPoint>
                     {data.length < 2 ? null : data.reduce((mappedArray, item, index) => {
                         if (index > 1) {
-                            var progressPerc = Math.round((dataPoint.value / compDataPoint.value) * 100)
+                            var progressPerc = Math.round((data[0].value / item.value) * 100)
                             var percChange = progressPerc - 100 // Whatever range condition you want
                             mappedArray.push(<ComparisonDataPoint
                                 config={config}
