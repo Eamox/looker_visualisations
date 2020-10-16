@@ -26,7 +26,7 @@ const DataPointGroup = styled.div`
   width: 100%;
   display: flex;
   flex-shrink: ${props => props.layout === 'horizontal' ? 'auto' : 0 };
-  flex-direction: ${props => props.comparisonPlacement ? dataPointGroupDirectionDict[props.comparisonPlacement] : 'column'};
+  flex-direction: 'column';
   align-items: center;
   justify-content: center;
 `
@@ -132,18 +132,14 @@ class MultipleValue extends React.PureComponent {
         style={{fontSize: `${this.state.fontSize}em`}}
       >
       <>
-      {console.log(data)}
       <DataPointGroup
-                    comparisonPlacement={data[0] && "below"}
-                    key={`group_${data[0].name}`}
+                    key="Grouped"
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                 >
                     <DataPoint titlePlacement={config[`title_placement_${data[0].name}`]}>
-                        {config[`show_title_${data[0].name}`] === false ? null : (
                             <DataPointTitle color={config[`style_${data[0].name}`]}>
                                 {config[`title_overrride_${data[0].name}`] || data[0].label}
                             </DataPointTitle>
-                        )}
                         <DataPointValue
                             color={config[`style_${data[0].name}`]}
                             onClick={() => { this.handleClick(data[0], event) }}
