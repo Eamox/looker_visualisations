@@ -132,61 +132,50 @@ class MultipleValue extends React.PureComponent {
         font={config['grouping_font']}
         style={{fontSize: `${this.state.fontSize}em`}}
       >
-        {data
-          .map((dataPoint, index) => {
-            const compDataPoint = dataPoint.comparison
-            let progressPerc
-            let percChange
-            console.log("testing")
-            if (compDataPoint) {
-              progressPerc = Math.round((dataPoint.value / compDataPoint.value) * 100)
-              percChange = progressPerc - 100
-            }
-            return (
-              <>
-              <DataPointGroup 
-                comparisonPlacement={compDataPoint && config[`comparison_label_placement_${compDataPoint.name}`]} 
-                key={`group_${dataPoint.name}`} 
-                layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
-              >
-                <DataPoint titlePlacement={config[`title_placement_${dataPoint.name}`]}>
-                  {config[`show_title_${dataPoint.name}`] === false ? null : (
-                    <DataPointTitle color={config[`style_${dataPoint.name}`]}>
-                      {config[`title_overrride_${dataPoint.name}`] || dataPoint.label}
-                    </DataPointTitle>
-                  )}
-                  <DataPointValue 
-                    color={config[`style_${dataPoint.name}`]}
-                    onClick={() => { this.handleClick(dataPoint, event) }}
+      <>
+      <DataPointGroup
+                    comparisonPlacement={compDataPoint && "below"}
+                    key={`group_${data[0].name}`}
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
-                  >
-                    {dataPoint.formattedValue}
-                  </DataPointValue>
-                </DataPoint>
-                {!compDataPoint ? null : (
-                <ComparisonDataPoint 
-                  config={config}
-                  compDataPoint={compDataPoint}
-                  dataPoint={dataPoint}
-                  percChange={percChange}
-                  progressPerc={progressPerc}
-                  handleClick={this.handleClick}
-                />)}
-                {!compDataPoint ? null : (
-                <ComparisonDataPoint 
-                  config={config}
-                  compDataPoint={dataPoint}
-                  dataPoint={dataPoint}
-                  percChange={percChange}
-                  progressPerc={progressPerc}
-                  handleClick={this.handleClick}
-                />)}
+                >
+                    <DataPoint titlePlacement={config[`title_placement_${data[0].name}`]}>
+                        {config[`show_title_${data[0].name}`] === false ? null : (
+                            <DataPointTitle color={config[`style_${data[0].name}`]}>
+                                {config[`title_overrride_${data[0].name}`] || data[0].label}
+                            </DataPointTitle>
+                        )}
+                        <DataPointValue
+                            color={config[`style_${data[0].name}`]}
+                            onClick={() => { this.handleClick(data[0], event) }}
+                            layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
+                        >
+                            {data[0].formattedValue}
+                        </DataPointValue>
+                    </DataPoint>
+                    {data.length < 2 ? null : data.reduce((mappedArray, item, index) => {
+                        if (index > 1) {
+                            var progressPerc = Math.round((dataPoint.value / compDataPoint.value) * 100)
+                            var percChange = progressPerc - 100 // Whatever range condition you want
+                            mappedArray.push(<ComparisonDataPoint
+                                config={config}
+                                compDataPoint={item}
+                                dataPoint={data[0]}
+                                percChange={percChange}
+                                progressPerc={progressPerc}
+                                handleClick={this.handleClick}
+                            />)
+                            return mappedArray
+                        }
+                    }
+                    )
+                    }
+
+           
               </DataPointGroup>
         
               </>
             )
-          })
-        }
+        
       </DataPointsWrapper>
     )
 
