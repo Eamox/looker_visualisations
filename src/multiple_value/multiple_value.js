@@ -133,12 +133,14 @@ class MultipleValue extends React.PureComponent {
         style={{fontSize: `${this.state.fontSize}em`}}
       >
       <>
+      {console.log(data)}
+      {console.log("updated")}
       <DataPointGroup
                     comparisonPlacement={data[0] && "below"}
-                    key={`group_Test`}
+                    key={`group_${data[0].name}`}
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                 >
-                    <DataPoint titlePlacement={config[`title_placement_Test`]}>
+                    <DataPoint titlePlacement={config[`title_placement_${data[0].name}`]}>
                         {config[`show_title_${data[0].name}`] === false ? null : (
                             <DataPointTitle color={config[`style_${data[0].name}`]}>
                                 {config[`title_overrride_${data[0].name}`] || data[0].label}
@@ -152,7 +154,7 @@ class MultipleValue extends React.PureComponent {
                             {data[0].formattedValue}
                         </DataPointValue>
                     </DataPoint>
-                    {console.log(data)}
+                   
                     {data.length < 2 ? null : data.reduce((mappedArray, item, index) => {
                         if (index > 1) {
                             var progressPerc = Math.round((data[0].value / item.value) * 100)
