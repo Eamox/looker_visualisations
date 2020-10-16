@@ -134,7 +134,6 @@ class MultipleValue extends React.PureComponent {
       >
         {data
           .map((dataPoint, index) => {
-            alert(dataPoint)
             const compDataPoint = dataPoint.comparison
             let progressPerc
             let percChange
@@ -144,6 +143,7 @@ class MultipleValue extends React.PureComponent {
             }
             return (
               <>
+              <script>console.log(data)</script>
               <DataPointGroup 
                 comparisonPlacement={compDataPoint && config[`comparison_label_placement_${compDataPoint.name}`]} 
                 key={`group_${dataPoint.name}`} 
