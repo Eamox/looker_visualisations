@@ -167,10 +167,10 @@ class MultipleValue extends React.PureComponent {
                         
                     } */
 
-                    data.length < 2 ? null : data.slice(1).map(item => <p> testing this </p>)
+                    data.length < 2 ? null : data.slice(1).map(item => <p> testing this </p> )
                     }
-                    )
-                    }
+                    
+                    
 
            
               </DataPointGroup>
