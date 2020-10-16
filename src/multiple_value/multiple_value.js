@@ -123,6 +123,7 @@ class MultipleValue extends React.PureComponent {
   render() {
     const {config, data} = this.props;
     let CONFIG = this.props.config;
+    let firstData = data[0]
     
 
     return (
@@ -136,27 +137,27 @@ class MultipleValue extends React.PureComponent {
                     key="Grouped"
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                 >
-                    <DataPoint titlePlacement={config[`title_placement_${data[0].name}`]}>
-                            <DataPointTitle color={config[`style_${data[0].name}`]}>
-                                {config[`title_overrride_${data[0].name}`] || data[0].label}
+                    <DataPoint titlePlacement={config[`title_placement_${firstData.name}`]}>
+                            <DataPointTitle color={config[`style_${firstData.name}`]}>
+                                {config[`title_overrride_${firstData.name}`] || firstData.label}
                             </DataPointTitle>
                         <DataPointValue
-                            color={config[`style_${data[0].name}`]}
-                            onClick={() => { this.handleClick(data[0], event) }}
+                            color={config[`style_${firstData.name}`]}
+                            onClick={() => { this.handleClick(firstData, event) }}
                             layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                         >
-                            {data[0].formattedValue}
+                            {data.formattedValue}
                         </DataPointValue>
                     </DataPoint>
                    
-                    {data.length < 2 ? null : data.slice(1).map(item => {
-                            var progressPerc = Math.round((item.value / data[0].value) * 100)
+                    {/* {data.length < 2 ? null : data.slice(1).map(item => {
+                            var progressPerc = Math.round((item.value / firstData.value) * 100)
                             var percChange = progressPerc - 100 
                             console.log(item)// Whatever range condition you want
                             return <ComparisonDataPoint
                                 config={config}
                                 compDataPoint={item}
-                                dataPoint={data[0]}
+                                dataPoint={firstData}
                                 percChange={percChange}
                                 progressPerc={progressPerc}
                                 handleClick={this.handleClick}
@@ -164,6 +165,9 @@ class MultipleValue extends React.PureComponent {
                             />
                             
                         
+                    } */
+
+                    data.length < 2 ? null : data.slice(1).map(item => <p> testing this </p>)
                     }
                     )
                     }
