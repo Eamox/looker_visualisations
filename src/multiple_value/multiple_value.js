@@ -152,6 +152,7 @@ class MultipleValue extends React.PureComponent {
                             {data[0].formattedValue}
                         </DataPointValue>
                     </DataPoint>
+                    {console.log(data)}
                     {data.length < 2 ? null : data.reduce((mappedArray, item, index) => {
                         if (index > 1) {
                             var progressPerc = Math.round((data[0].value / item.value) * 100)
