@@ -182,9 +182,7 @@ class MultipleValue extends React.PureComponent {
                   handleClick={this.handleClick}
                 />)}
               </DataPointGroup>
-              {config.dividers && config.orientation === 'horizontal' && index < (data.length - 1) &&
-              <Divider />
-              }
+        
               </>
             )
           })
