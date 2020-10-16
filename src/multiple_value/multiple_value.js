@@ -135,10 +135,10 @@ class MultipleValue extends React.PureComponent {
       <>
       <DataPointGroup
                     comparisonPlacement={data[0] && "below"}
-                    key={`group_${data[0].name}`}
+                    key={`group_Test`}
                     layout={config['orientation'] === 'auto' ? this.state.groupingLayout : config['orientation']}
                 >
-                    <DataPoint titlePlacement={config[`title_placement_${data[0].name}`]}>
+                    <DataPoint titlePlacement={config[`title_placement_Test`]}>
                         {config[`show_title_${data[0].name}`] === false ? null : (
                             <DataPointTitle color={config[`style_${data[0].name}`]}>
                                 {config[`title_overrride_${data[0].name}`] || data[0].label}
