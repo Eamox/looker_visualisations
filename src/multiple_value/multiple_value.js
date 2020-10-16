@@ -134,7 +134,7 @@ class MultipleValue extends React.PureComponent {
       >
       <>
       {console.log(data)}
-      {console.log("updated")}
+      {console.log("updated")} 
       <DataPointGroup
                     comparisonPlacement={data[0] && "below"}
                     key={`group_${data[0].name}`}
