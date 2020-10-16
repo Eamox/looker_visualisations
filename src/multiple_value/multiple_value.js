@@ -175,7 +175,7 @@ class MultipleValue extends React.PureComponent {
                 {!compDataPoint ? null : (
                 <ComparisonDataPoint 
                   config={config}
-                  compDataPoint={compDataPoint}
+                  compDataPoint={dataPoint}
                   dataPoint={dataPoint}
                   percChange={percChange}
                   progressPerc={progressPerc}
