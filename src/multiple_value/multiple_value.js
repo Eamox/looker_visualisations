@@ -149,20 +149,21 @@ class MultipleValue extends React.PureComponent {
                         </DataPointValue>
                     </DataPoint>
                    
-                    {data.length < 2 ? null : data.reduce((mappedArray, item, index) => {
-                        if (index > 1) {
-                            var progressPerc = Math.round((data[0].value / item.value) * 100)
-                            var percChange = progressPerc - 100 // Whatever range condition you want
-                            mappedArray.push(<ComparisonDataPoint
+                    {data.length < 2 ? null : data.slice(1).map(item => {
+                            var progressPerc = Math.round((item.value / data[0].value) * 100)
+                            var percChange = progressPerc - 100 
+                            console.log(item)// Whatever range condition you want
+                            return <ComparisonDataPoint
                                 config={config}
                                 compDataPoint={item}
                                 dataPoint={data[0]}
                                 percChange={percChange}
                                 progressPerc={progressPerc}
                                 handleClick={this.handleClick}
-                            />)
-                            return mappedArray
-                        }
+                                key = {item.name}
+                            />
+                            
+                        
                     }
                     )
                     }
