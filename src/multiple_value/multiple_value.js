@@ -172,6 +172,15 @@ class MultipleValue extends React.PureComponent {
                   progressPerc={progressPerc}
                   handleClick={this.handleClick}
                 />)}
+                {!compDataPoint ? null : (
+                <ComparisonDataPoint 
+                  config={config}
+                  compDataPoint={compDataPoint}
+                  dataPoint={dataPoint}
+                  percChange={percChange}
+                  progressPerc={progressPerc}
+                  handleClick={this.handleClick}
+                />)}
               </DataPointGroup>
               {config.dividers && config.orientation === 'horizontal' && index < (data.length - 1) &&
               <Divider />
