@@ -137,13 +137,13 @@ class MultipleValue extends React.PureComponent {
             const compDataPoint = dataPoint.comparison
             let progressPerc
             let percChange
+            console.log("testing")
             if (compDataPoint) {
               progressPerc = Math.round((dataPoint.value / compDataPoint.value) * 100)
               percChange = progressPerc - 100
             }
             return (
               <>
-              <script>console.log(data)</script>
               <DataPointGroup 
                 comparisonPlacement={compDataPoint && config[`comparison_label_placement_${compDataPoint.name}`]} 
                 key={`group_${dataPoint.name}`} 
